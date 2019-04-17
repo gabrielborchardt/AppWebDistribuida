@@ -1,0 +1,6 @@
+D:\APS\Source\Repositorio\Repositorio\bin\Debug\Repositorio.dll
+D:\APS\Source\Repositorio\Repositorio\bin\Debug\Repositorio.pdb
+D:\APS\Source\Repositorio\Repositorio\obj\Debug\Repositorio.csprojAssemblyReference.cache
+D:\APS\Source\Repositorio\Repositorio\obj\Debug\Repositorio.csproj.CoreCompileInputs.cache
+D:\APS\Source\Repositorio\Repositorio\obj\Debug\Repositorio.dll
+D:\APS\Source\Repositorio\Repositorio\obj\Debug\Repositorio.pdb
