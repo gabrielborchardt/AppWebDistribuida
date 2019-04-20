@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bibliotecas", "Bibliotecas"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "..\Biblioteca\Source\Models\Models.csproj", "{5450EC09-56FA-41DD-8E83-CE5E2F69A18B}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Helpers", "..\Biblioteca\Source\Helpers\Helpers.csproj", "{AC37F600-0F4D-498D-B3B2-AA395A0068EA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,12 +35,17 @@ Global
 		{5450EC09-56FA-41DD-8E83-CE5E2F69A18B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5450EC09-56FA-41DD-8E83-CE5E2F69A18B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5450EC09-56FA-41DD-8E83-CE5E2F69A18B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC37F600-0F4D-498D-B3B2-AA395A0068EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC37F600-0F4D-498D-B3B2-AA395A0068EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC37F600-0F4D-498D-B3B2-AA395A0068EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC37F600-0F4D-498D-B3B2-AA395A0068EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{5450EC09-56FA-41DD-8E83-CE5E2F69A18B} = {855B49B8-B45A-4C4C-8E69-06B1EB5BE77B}
+		{AC37F600-0F4D-498D-B3B2-AA395A0068EA} = {855B49B8-B45A-4C4C-8E69-06B1EB5BE77B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D147C6F6-6813-475C-98AB-992E218FB921}

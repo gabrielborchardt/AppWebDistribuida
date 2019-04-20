@@ -10,13 +10,13 @@ using Xamarin.Forms.Xaml;
 namespace Mobile.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Home : MasterDetailPage
+    public partial class Frete : ContentPage
     {
-        public Home ()
+        public Frete()
         {
             InitializeComponent();
 
-            BindingContext = new ViewModel.HomeViewModel();
+            BindingContext = new ViewModel.FreteViewModel();
         }
     }
 }

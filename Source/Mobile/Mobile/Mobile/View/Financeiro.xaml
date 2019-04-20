@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mobile.View.Financeiro">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+            <Label Text="Financeiro" VerticalOptions="Start"/>
+            <Entry Placeholder="CPF do comprador" Text="{Binding Cpf}"/>
+            <Button Text="Verificar Situação Financeira" Command="{Binding VerificarCommand}"/>
+            <Label Text="{Binding Resultado}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
