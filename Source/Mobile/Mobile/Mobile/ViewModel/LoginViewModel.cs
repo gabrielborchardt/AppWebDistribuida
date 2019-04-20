@@ -3,7 +3,7 @@ using System.ComponentModel;
 using Xamarin.Forms;
 using Mobile.Servico;
 using Mobile.Util;
-using Repositorio.Modelo;
+using Models;
 
 namespace Mobile.ViewModel
 {

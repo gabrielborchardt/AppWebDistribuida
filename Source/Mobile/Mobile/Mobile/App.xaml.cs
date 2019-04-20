@@ -1,9 +1,7 @@
-﻿using Mobile.View;
-using System;
+﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Mobile
 {
     public partial class App : Application
@@ -12,7 +10,7 @@ namespace Mobile
         {
             InitializeComponent();
 
-            MainPage = new Login();
+            MainPage = new View.Login();
         }
 
         protected override void OnStart()

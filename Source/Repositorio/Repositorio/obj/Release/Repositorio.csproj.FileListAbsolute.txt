@@ -1,5 +1,0 @@
-D:\APS\Source\Repositorio\Repositorio\bin\Release\Repositorio.dll
-D:\APS\Source\Repositorio\Repositorio\bin\Release\Repositorio.pdb
-D:\APS\Source\Repositorio\Repositorio\obj\Release\Repositorio.csproj.CoreCompileInputs.cache
-D:\APS\Source\Repositorio\Repositorio\obj\Release\Repositorio.dll
-D:\APS\Source\Repositorio\Repositorio\obj\Release\Repositorio.pdb
