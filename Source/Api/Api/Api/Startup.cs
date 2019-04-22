@@ -26,8 +26,15 @@ namespace Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            #region DI
+
             services.AddScoped<Services.IAuthenticationService, Services.AuthenticationService>();
             services.AddScoped<Repositories.IAuthenticationRepository, Repositories.AuthenticationRepository>();
+            services.AddScoped<Services.IFreightService, Services.FreightService>();
+            services.AddScoped<Repositories.IFreightRepository, Repositories.FreightRepository>();
+
+            #endregion
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
