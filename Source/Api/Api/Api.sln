@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2003
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "Api\Api.csproj", "{9E251971-E479-4DE8-88B3-5BD80BFDEB6B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bibliotecas", "Bibliotecas", "{231FE134-406E-4E03-B3AD-F808EDAFAD4D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Helpers", "..\..\Biblioteca\Source\Helpers\Helpers.csproj", "{024DEE3A-843D-4335-996B-5DE7EFBA7A79}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9E251971-E479-4DE8-88B3-5BD80BFDEB6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E251971-E479-4DE8-88B3-5BD80BFDEB6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E251971-E479-4DE8-88B3-5BD80BFDEB6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E251971-E479-4DE8-88B3-5BD80BFDEB6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{024DEE3A-843D-4335-996B-5DE7EFBA7A79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{024DEE3A-843D-4335-996B-5DE7EFBA7A79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{024DEE3A-843D-4335-996B-5DE7EFBA7A79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{024DEE3A-843D-4335-996B-5DE7EFBA7A79}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{024DEE3A-843D-4335-996B-5DE7EFBA7A79} = {231FE134-406E-4E03-B3AD-F808EDAFAD4D}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EA229557-9078-4671-A828-265B4ECAC5D5}
+	EndGlobalSection
+EndGlobal
