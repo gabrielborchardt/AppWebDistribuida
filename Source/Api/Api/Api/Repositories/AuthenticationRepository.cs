@@ -16,7 +16,7 @@ namespace Api.Repositories
         public AuthenticationRepository(IConfiguration configuration)
         {
             _configuration = configuration;
-            _connString = _configuration["AuthenticationApi"];
+            _connString = _configuration["AuthenticationCS"];
         }
 
         public bool UserIsValid(string user)

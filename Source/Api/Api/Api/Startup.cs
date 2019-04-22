@@ -33,6 +33,10 @@ namespace Api
             services.AddScoped<Repositories.IAuthenticationRepository, Repositories.AuthenticationRepository>();
             services.AddScoped<Services.IFreightService, Services.FreightService>();
             services.AddScoped<Repositories.IFreightRepository, Repositories.FreightRepository>();
+            services.AddScoped<Services.ISerasaService, Services.SerasaService>();
+            services.AddScoped<Services.ICreditService, Services.CreditService>();
+            services.AddScoped<Repositories.ICreditRepository, Repositories.CreditRepository>();
+
 
             #endregion
 
