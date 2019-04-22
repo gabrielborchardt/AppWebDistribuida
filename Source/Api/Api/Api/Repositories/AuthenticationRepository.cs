@@ -38,5 +38,25 @@ namespace Api.Repositories
                 return connection.QueryFirstOrDefault<int>(sql) > 0 ? true : false;
             }
         }
+
+        public bool IsAuth(string userCode, string route)
+        {
+            string sql = $"SELECT COUNT(*) FROM USU_ACESSO WHERE CODUSUARIO = '{userCode}' AND ROTA = '{route}'";
+
+            using (var connection = new NpgsqlConnection(_connString))
+            {
+                return connection.QueryFirstOrDefault<int>(sql) > 0 ? true : false;
+            }
+        }
+
+        public int GetUserCode(string user, string pass)
+        {
+            string sql = $"SELECT CODUSUARIO FROM USU_DADOS WHERE EMAIL = '{user}' AND SENHA = '{pass}'";
+
+            using (var connection = new NpgsqlConnection(_connString))
+            {
+                return connection.QueryFirstOrDefault<int>(sql);
+            }
+        }
     }
 }

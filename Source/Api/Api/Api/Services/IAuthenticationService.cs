@@ -8,5 +8,6 @@ namespace Api.Services
     public interface IAuthenticationService
     {
         string Login(string user, string pass);
+        bool IsAuth(string userCode, string route);
     }
 }

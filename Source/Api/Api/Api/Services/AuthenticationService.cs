@@ -1,4 +1,5 @@
 ﻿using Api.Repositories;
+using Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,11 @@ namespace Api.Services
             _repository = repository;
         }
 
+        public bool IsAuth(string userCode, string route)
+        {
+            return _repository.IsAuth(userCode, route);
+        }
+
         public string Login(string user, string pass)
         {
             if (!_repository.UserIsValid(user))
@@ -23,7 +29,7 @@ namespace Api.Services
             if (!_repository.CredentialsIsValid(user, pass))
                 throw new Exception("Senha incorreta.");
 
-            return "Usuário reconhecido";
+            return MD5Helper.Crypt(_repository.GetUserCode(user, pass).ToString());
 
         }
     }
