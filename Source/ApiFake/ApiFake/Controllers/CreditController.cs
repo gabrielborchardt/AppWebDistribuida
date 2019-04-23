@@ -2,35 +2,35 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Api.Services;
+using ApiFake.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Models.Parameter.Request;
 
-namespace Api.Controllers
+namespace ApiFake.Controllers
 {
-    [Route("freight")]
+    [Route("credit")]
     [ApiController]
-    public class FreightController : ControllerBase
+    public class CreditController : ControllerBase
     {
-        private readonly IFreightService _service;
+        private readonly ICreditService _service;
 
-        public FreightController(IFreightService service)
+        public CreditController(ICreditService service)
         {
             _service = service;
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("consult")]
-        public IActionResult Consult([FromBody]FreightConsult parameters)
+        public IActionResult Consult(string cpf)
         {
             try
             {
-                return Ok(_service.Consult(parameters));
+                return Ok(_service.Consult(cpf));
             }catch(Exception ex)
             {
                 return BadRequest(ex.Message);
             }
         }
+
     }
 }

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Api.Repositories
+namespace ApiFake.Repositories
 {
     public class CreditRepository : ICreditRepository
     {
@@ -16,16 +16,16 @@ namespace Api.Repositories
         public CreditRepository(IConfiguration configuration)
         {
             _configuration = configuration;
-            _connString = _configuration["FinanceCS"];
+            _connString = _configuration["CS"];
         }
 
-        public bool HaveExpiredCredit(string cpf)
+        public int GetCountExpiredCredit(string cpf)
         {
-            string sql = $"SELECT COUNT(*) FROM FIN_RECEITA WHERE FLGPAGO = 'N' AND DATVENCIMENTO < CURRENT_DATE AND NUMCPF = '{cpf}'";
+            string sql = $"SELECT COUNT(*) FROM PES_BLOQUEIO WHERE NUMCPF = '{cpf}' AND FLGBLOQUEADO = 'S'";
 
             using (var connection = new NpgsqlConnection(_connString))
             {
-                return connection.QueryFirstOrDefault<int>(sql) > 0 ? true : false;
+                return connection.QueryFirstOrDefault<int>(sql);
             }
         }
     }

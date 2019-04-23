@@ -23,20 +23,9 @@ namespace Api.Services
         {
             var ret = new Models.Parameter.Response.CreditConsult();
 
-            if (_repository.HaveExpiredCredit(parameters.Cpf))
-            {
-                ret.Liberado = true;
-
-                if (_serasaService.HaveExpiredCredit(parameters.Cpf))
-                    ret.Valor = (decimal)Math.Round(new Random().Next(10, 100) * 325f, 2);
-                else
-                    ret.Valor = 0;
-            }
-            else
-            {
-                ret.Liberado = false;
-                ret.Valor = 0;
-            }
+            ret.PossuiDividasEmpresa = !_repository.HaveExpiredCredit(parameters.Cpf) ? false : true;
+            ret.PossuiDividasSerasa = !_serasaService.HaveExpiredCredit(parameters.Cpf) ? false : true;
+            ret.ValorDisponivel = !ret.PossuiDividasEmpresa && !ret.PossuiDividasSerasa ? (decimal)Math.Round(new Random().Next(10, 100) * 325f, 2) : 0;
 
             return ret;
         }
