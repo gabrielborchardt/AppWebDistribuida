@@ -6,7 +6,8 @@ namespace Models.Parameter.Response
 {
     public class CreditConsult
     {
-        public bool Liberado { get; set; }
-        public decimal Valor { get; set; }
+        public bool PossuiDividasEmpresa { get; set; }
+        public bool PossuiDividasSerasa { get; set; }
+        public decimal ValorDisponivel { get; set; }
     }
 }
