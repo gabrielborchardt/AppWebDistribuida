@@ -75,7 +75,7 @@ namespace Mobile.Servico
             return null;
         }
 
-        public static decimal BuscarFinanceiro(string cpf)
+        public static Financeiro BuscarFinanceiro(string cpf)
         {
             var parameters = new FormUrlEncodedContent(new[]
             {
@@ -91,11 +91,11 @@ namespace Mobile.Servico
             {
                 var conteudo = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
 
-                //if (conteudo != null)
-                    //return JsonConvert.DeserializeObject<Financeiro>(conteudo);
+                if (conteudo != null)
+                    return JsonConvert.DeserializeObject<Financeiro>(conteudo);
             }
 
-            return 0;
+            return null;
         }
     }
 }
