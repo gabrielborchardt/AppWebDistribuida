@@ -1,8 +1,8 @@
-﻿namespace Models
+﻿namespace Mobile.Models
 {
     public class Usuario
     {
-        public int codusuario { get; set; }
+        public string authenticationKey { get; set; }
         public string email { get; set; }
         public string senha { get; set; }
     }

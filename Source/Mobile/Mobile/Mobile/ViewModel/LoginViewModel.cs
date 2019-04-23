@@ -3,7 +3,7 @@ using System.ComponentModel;
 using Xamarin.Forms;
 using Mobile.Servico;
 using Mobile.Util;
-using Models;
+using Mobile.Models;
 
 namespace Mobile.ViewModel
 {
@@ -71,16 +71,20 @@ namespace Mobile.ViewModel
                     senha = Senha
                 };
 
-                var usuarioLogado = await ConsultaApi.Login(usuario);
-                if (usuarioLogado == null)
+                var response = await ConsultaApi.Login(usuario);
+                if (response == null)
                 {
-
-                    Mensagem = "Usuário/Senha não conferem";
+                    Mensagem = "Erro ao fazer login.";
+                    Carregando = false;
+                }
+                else if(response.usuario == null)
+                {
+                    Mensagem = response.mensagem;
                     Carregando = false;
                 }
                 else
                 {
-                    UsuarioUtil.SetUsuarioLogado(usuarioLogado);
+                    UsuarioUtil.SetUsuarioLogado(response.usuario);
                     App.Current.MainPage = new NavigationPage(new View.Home()) { BarBackgroundColor = Color.FromHex("#5ED055"), BarTextColor = Color.White };
                 }
             }
