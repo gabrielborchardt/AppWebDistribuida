@@ -27,6 +27,13 @@ namespace Mobile.ViewModel
             set { _Peso = value; OnPropertyChanged("Peso"); }
         }
 
+        private decimal _Tamanho;
+        public decimal Tamanho
+        {
+            get { return _Tamanho; }
+            set { _Tamanho = value; OnPropertyChanged("Tamanho"); }
+        }
+
         private string _Resultado;
         public string Resultado
         {
@@ -65,7 +72,10 @@ namespace Mobile.ViewModel
                 if (_Peso == 0)
                     _Resultado = "Digite o peso da embalagem.";
 
-                var frete = Servico.ConsultaApi.BuscarFrete(_CepOrigem, _CepOrigem, _Peso);
+                if (_Tamanho == 0)
+                    _Resultado = "Digite o tamanho da embalagem.";
+
+                var frete = Servico.ConsultaApi.BuscarFrete(_CepOrigem, _CepOrigem, _Peso, _Tamanho);
 
                 if(frete == null)
                 {
@@ -73,15 +83,13 @@ namespace Mobile.ViewModel
                 }
                 else
                 {
-                    _Resultado = string.Format("Local:{0},{1},{2},{3},{4}" + 
+                    _Resultado = string.Format("Local:{0},{1},{2}" + 
                                                 Environment.NewLine +
-                                                "Valor: R${5}", 
-                                                frete.logradouro, 
-                                                frete.complemento,
-                                                frete.bairro,
-                                                frete.localidade,
-                                                frete.uf,
-                                                frete.valor);
+                                                "Valor: R${3}", 
+                                                frete.Rua, 
+                                                frete.Cidade,
+                                                frete.Estado,
+                                                frete.Valor);
                 }
 
             }

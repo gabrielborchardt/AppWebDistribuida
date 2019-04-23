@@ -52,10 +52,10 @@ namespace Mobile.ViewModel
                 }
                 else
                 {
-                    if (financeiro.bloqueado)
-                        _Resultado = "CPF Bloqueado";
-                    else
-                        _Resultado = string.Format("Valor Liberado: R${0}", financeiro.valor);
+                    //if (financeiro.bloqueado)
+                        //_Resultado = "CPF Bloqueado";
+                    //else
+                        //_Resultado = string.Format("Valor Liberado: R${0}", financeiro.valor);
                 }
 
             }

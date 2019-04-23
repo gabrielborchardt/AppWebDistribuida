@@ -8,6 +8,7 @@
             <Entry Placeholder="CEP Origem" Text="{Binding CepOrigem}"/>
             <Entry Placeholder="CEP Destino" Text="{Binding CepDestino}"/>
             <Entry Placeholder="Peso da Embalagem" Text="{Binding Peso}"/>
+            <Entry Placeholder="Tamanho da Embalagem" Text="{Binding Tamanho}"/>
             <Button Text="Calcular Frete" Command="{Binding CalcularCommand}"/>
             <Label Text="{Binding Resultado}"/>
         </StackLayout>
