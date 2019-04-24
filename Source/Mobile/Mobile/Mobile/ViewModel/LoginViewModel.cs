@@ -3,7 +3,7 @@ using System.ComponentModel;
 using Xamarin.Forms;
 using Mobile.Servico;
 using Mobile.Util;
-using Mobile.Models;
+using Mobile.Model;
 
 namespace Mobile.ViewModel
 {
@@ -75,21 +75,28 @@ namespace Mobile.ViewModel
                 if (response == null)
                 {
                     Mensagem = "Erro ao fazer login.";
+                    MsgErro = true;
                     Carregando = false;
                 }
                 else if(response.usuario == null)
                 {
                     Mensagem = response.mensagem;
+                    MsgErro = true;
                     Carregando = false;
                 }
                 else
                 {
+                    Mensagem = "";
+                    MsgErro = false;
+                    Carregando = false;
+
                     UsuarioUtil.SetUsuarioLogado(response.usuario);
-                    App.Current.MainPage = new NavigationPage(new View.Home()) { BarBackgroundColor = Color.FromHex("#5ED055"), BarTextColor = Color.White };
+                    App.Current.MainPage = new View.Home();
                 }
             }
             catch (Exception ex)
             {
+                Mensagem = ex.Message;
                 MsgErro = true;
             }
             finally

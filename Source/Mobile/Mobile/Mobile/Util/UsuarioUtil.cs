@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using Mobile.Models;
+using Mobile.Model;
 
 namespace Mobile.Util
 {

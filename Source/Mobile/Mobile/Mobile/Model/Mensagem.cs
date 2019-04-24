@@ -1,4 +1,4 @@
-﻿namespace Mobile.Models
+﻿namespace Mobile.Model
 {
     public class Mensagem
     {
