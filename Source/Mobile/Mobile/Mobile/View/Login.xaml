@@ -10,7 +10,7 @@
                 <Label Text="DESENVOLVIMENTO DE APLICAÇÕES WEB DISTRIBUÍDAS" TextColor="White"/>
 
                 <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" Margin="10">
-                    <Entry Placeholder="Email" PlaceholderColor="#5ED055" Text="{Binding Nome}" BackgroundColor="White" TextColor="#5ED055"/>
+                    <Entry Placeholder="Email" PlaceholderColor="#5ED055" Text="{Binding Email}" BackgroundColor="White" TextColor="#5ED055"/>
                     <Entry Placeholder="Senha" IsPassword="True" PlaceholderColor="#5ED055" Text="{Binding Senha}" BackgroundColor="White" TextColor="#5ED055"/>
 
                     <Button Text="Entrar" BackgroundColor="Transparent" TextColor="White" Command="{Binding EntrarCommand}"/>

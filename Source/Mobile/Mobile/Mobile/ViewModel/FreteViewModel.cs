@@ -75,7 +75,7 @@ namespace Mobile.ViewModel
                 if (_Tamanho == 0)
                     _Resultado = "Digite o tamanho da embalagem.";
 
-                var frete = Servico.ConsultaApi.BuscarFrete(_CepOrigem, _CepOrigem, _Peso, _Tamanho);
+                var frete = Servico.ConsultaApi.BuscarFrete(_CepOrigem, _CepOrigem, _Peso, _Tamanho).Result;
 
                 if(frete == null)
                 {

@@ -44,7 +44,7 @@ namespace Mobile.ViewModel
                 if (validacao != "OK")
                     _Resultado = validacao;
 
-                var financeiro = Servico.ConsultaApi.BuscarFinanceiro(_Cpf);
+                var financeiro = Servico.ConsultaApi.BuscarFinanceiro(_Cpf).Result;
 
                 if (financeiro == null)
                 {
@@ -52,10 +52,12 @@ namespace Mobile.ViewModel
                 }
                 else
                 {
-                    if (financeiro.bloqueado)
-                        _Resultado = "CPF Bloqueado";
+                    if (financeiro.PossuiDividasEmpresa)
+                        _Resultado = "Possui Dívidas na Empresa";
+                    else if (financeiro.PossuiDividasSerasa)
+                        _Resultado = "Possui Dívidas no Serasa";
                     else
-                        _Resultado = string.Format("Valor Liberado: R${0}", financeiro.valor);
+                        _Resultado = string.Format("Valor Liberado: R${0}", financeiro.ValorDisponivel);
                 }
 
             }

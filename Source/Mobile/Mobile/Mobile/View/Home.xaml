@@ -5,18 +5,21 @@
              Title="Demo">
 
     <MasterDetailPage.Master>
-        <!--Menu-->
         <ContentPage Title="Menu">
-            <StackLayout>
-                <Button Text="Frete" BackgroundColor="Transparent"/>
-                <Button Text="Financeiro" BackgroundColor="Transparent"/>
+            <StackLayout Orientation="Vertical">
+                <Button Text="Frete" Command="{Binding FreteCommand}"/>
+                <Button Text="Financeiro" Command="{Binding FinanceiroCommand}"/>
             </StackLayout>
         </ContentPage>
     </MasterDetailPage.Master>
 
-    <!--<MasterDetailPage.Detail>
-        --><!--Conteudo--><!--
-        <master:Conteudo/>
-    </MasterDetailPage.Detail>-->
+    <MasterDetailPage.Detail>
+
+        <NavigationPage>
+            <x:Arguments>
+                <ContentPage Title="Selecione ao lado"></ContentPage>
+            </x:Arguments>
+        </NavigationPage>
+    </MasterDetailPage.Detail>
 
 </MasterDetailPage>
