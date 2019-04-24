@@ -20,10 +20,15 @@ namespace Api.Controllers
             _service = service;
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("consult")]
-        public IActionResult Consult([FromBody]FreightConsult parameters)
+        public IActionResult Consult(string cep, decimal tamanho, decimal peso)
         {
+            var parameters = new FreightConsult();
+            parameters.CepDestino = cep;
+            parameters.Tamanho = tamanho;
+            parameters.Peso = peso;
+
             try
             {
                 return Ok(_service.Consult(parameters));

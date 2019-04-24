@@ -19,9 +19,13 @@ namespace Api.Controllers
             _service = service;
         }
 
+        [HttpGet]
         [Route("consult")]
-        public IActionResult Consult([FromBody]Models.Parameter.Request.CreditConsult parameters)
+        public IActionResult Consult(string cpf)
         {
+            var parameters = new Models.Parameter.Request.CreditConsult();
+            parameters.Cpf = cpf;
+
             try
             {
                 return Ok(_service.Consult(parameters));

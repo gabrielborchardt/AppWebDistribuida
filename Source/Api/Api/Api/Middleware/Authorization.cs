@@ -32,19 +32,30 @@ namespace Api.Middleware
             {
                 var token = context.Request.Headers["Authorization"];
 
-                var userCode = MD5Helper.Uncrypt(token);
-
-                if (!_service.IsAuth(userCode, route))
+                if (String.IsNullOrEmpty(token))
                 {
                     var response = context.Response;
                     response.ContentType = "text/plain; charset=utf-8";
                     response.StatusCode = 401;
 
-                    await response.WriteAsync("Usuário não possui acesso.");
-
+                    await response.WriteAsync("Token de acesso não informado.");
                 }
                 else
-                    await _next(context);
+                {
+                    var userCode = MD5Helper.Uncrypt(token);
+
+                    if (!_service.IsAuth(userCode, route))
+                    {
+                        var response = context.Response;
+                        response.ContentType = "text/plain; charset=utf-8";
+                        response.StatusCode = 401;
+
+                        await response.WriteAsync("Usuário não possui acesso.");
+
+                    }
+                    else
+                        await _next(context);
+                }
             }
             else
                 await _next(context);
