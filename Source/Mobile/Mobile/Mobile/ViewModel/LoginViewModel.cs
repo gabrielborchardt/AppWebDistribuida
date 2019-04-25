@@ -63,7 +63,7 @@ namespace Mobile.ViewModel
             try
             {
                 Carregando = true;
-                _msgErro = false;
+                MsgErro = false;
 
                 var usuario = new Usuario()
                 {
@@ -91,7 +91,7 @@ namespace Mobile.ViewModel
                     Carregando = false;
 
                     UsuarioUtil.SetUsuarioLogado(response.usuario);
-                    App.Current.MainPage = new View.Home();
+                    App.Current.MainPage = new View.HomeTabbed();
                 }
             }
             catch (Exception ex)

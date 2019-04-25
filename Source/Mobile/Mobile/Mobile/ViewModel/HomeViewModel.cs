@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Mobile.View;
+using System;
 using System.ComponentModel;
-using System.Text;
 using Xamarin.Forms;
 
 namespace Mobile.ViewModel
@@ -28,7 +27,9 @@ namespace Mobile.ViewModel
         {
             try
             {
-                App.Current.MainPage = new NavigationPage(new View.Frete());
+                
+                App.Current.MainPage.Navigation.PushAsync(new Frete());
+                
             }
             catch (Exception ex)
             {
@@ -40,7 +41,7 @@ namespace Mobile.ViewModel
         {
             try
             {
-                App.Current.MainPage = new View.Financeiro();
+                App.Current.MainPage = new NavigationPage(new View.Financeiro());
             }
             catch (Exception ex)
             {

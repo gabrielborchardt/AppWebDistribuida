@@ -6,18 +6,11 @@ namespace Mobile.ViewModel
 {
     public class FreteViewModel : INotifyPropertyChanged
     {
-        private string _CepOrigem;
-        public string CepOrigem
+        private string _Cep;
+        public string Cep
         {
-            get { return _CepOrigem; }
-            set { _CepOrigem = value; OnPropertyChanged("CepOrigem"); }
-        }
-
-        private string _CepDestino;
-        public string CepDestino
-        {
-            get { return _CepDestino; }
-            set { _CepDestino = value; OnPropertyChanged("CepDestino"); }
+            get { return _Cep; }
+            set { _Cep = value; OnPropertyChanged("Cep"); }
         }
 
         private decimal _Peso;
@@ -52,6 +45,7 @@ namespace Mobile.ViewModel
 
         public FreteViewModel()
         {
+            Resultado = "Informe os dados.";
             CalcularCommand = new Command(CalcularAction);
         }
 
@@ -61,41 +55,46 @@ namespace Mobile.ViewModel
             {
                 var validacao = string.Empty;
 
-                validacao = Helpers.CepHelper.IsValid(_CepOrigem);
+                validacao = Helpers.CepHelper.IsValid(_Cep);
                 if (validacao != "OK")
-                    _Resultado = validacao;
-
-                validacao = Helpers.CepHelper.IsValid(_CepDestino);
-                if (validacao != "OK")
-                    _Resultado = validacao;
+                {
+                    Resultado = validacao;
+                    return;
+                }
 
                 if (_Peso == 0)
-                    _Resultado = "Digite o peso da embalagem.";
+                {
+                    Resultado = "Digite o peso da embalagem.";
+                    return;
+                }
 
                 if (_Tamanho == 0)
-                    _Resultado = "Digite o tamanho da embalagem.";
+                {
+                    Resultado = "Digite o tamanho da embalagem.";
+                    return;
+                }
 
-                var frete = Servico.ConsultaApi.BuscarFrete(_CepOrigem, _CepOrigem, _Peso, _Tamanho).Result;
+                var result = string.Empty;
+                var frete = Servico.ConsultaApi.BuscarFrete(_Cep, _Peso, _Tamanho, ref result);
 
                 if(frete == null)
                 {
-                    _Resultado = "Não foi possivel calcular o frete.";
+                    Resultado = result;
                 }
                 else
                 {
-                    _Resultado = string.Format("Local:{0},{1},{2}" + 
+                    Resultado = string.Format("Local: {0} - {1}/{2}" + 
                                                 Environment.NewLine +
                                                 "Valor: R${3}", 
                                                 frete.Rua, 
                                                 frete.Cidade,
                                                 frete.Estado,
-                                                frete.Valor);
+                                                frete.Valor.ToString("N2"));
                 }
-
             }
             catch (Exception ex)
             {
-                _Resultado = "Ocorreu um erro: " + ex.Message;
+                Resultado = "Ocorreu um erro: " + ex.Message;
             }
         }
     }

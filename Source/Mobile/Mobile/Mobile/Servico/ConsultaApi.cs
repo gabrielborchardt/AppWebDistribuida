@@ -6,6 +6,7 @@ using System.Net.NetworkInformation;
 using System;
 using Mobile.Model;
 using System.Text;
+using System.Collections.Generic;
 
 namespace Mobile.Servico
 {
@@ -52,10 +53,10 @@ namespace Mobile.Servico
 
             try
             {
-                using (var api = new HttpClient { BaseAddress = new Uri(url) })
+                using (var api = new HttpClient())
                 {
                     api.DefaultRequestHeaders.Add("Authorization", "Basic " + loginBase64);
-                    var apiResult = await api.PostAsync(api.BaseAddress, null);
+                    var apiResult = await api.PostAsync(url, null);
 
                     switch (apiResult.StatusCode)
                     {
@@ -82,81 +83,72 @@ namespace Mobile.Servico
             return mensagem;
         }
 
-        public static async Task<Models.Parameter.Response.FreightConsult> BuscarFrete(string origem, string destino, decimal peso, decimal tamanho)
-        { 
-            var url = _baseUrl + "/freight/consult";
+        public static Models.Parameter.Response.FreightConsult BuscarFrete(string cep, decimal peso, decimal tamanho, ref string result)
+        {
+            var url = _baseUrl + "/freight/consult?";
+            url += $"cep={cep}&";
+            url += $"tamanho={tamanho.ToString().Replace(".", "").Replace(",", ".")}&";
+            url += $"peso={peso.ToString().Replace(".", "").Replace(",", ".")}";
 
             var usuario = Util.UsuarioUtil.GetUsuarioLogado();
 
-            var frete = new Models.Parameter.Request.FreightConsult()
-            {
-                CepOrigem = origem,
-                CepDestino = destino,
-                Peso = peso,
-                Tamanho = tamanho
-            };
-
-            var json = JsonConvert.SerializeObject(frete);
-
             try
             {
-                using (var api = new HttpClient { BaseAddress = new Uri(url) })
+                using (var api = new HttpClient())
                 {
-                    api.DefaultRequestHeaders.Add("Authorization", usuario.authenticationKey);
-                    var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+                    api.DefaultRequestHeaders.TryAddWithoutValidation("Authorization", usuario.authenticationKey);
+                    api.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/json");
 
-                    var apiResult = await api.PostAsync(api.BaseAddress, httpContent);
+                    var apiResult = api.GetAsync(url).Result;
 
                     switch (apiResult.StatusCode)
                     {
                         case HttpStatusCode.OK:
-                            var result = apiResult.Content.ReadAsStringAsync().Result;
-                            return JsonConvert.DeserializeObject<Models.Parameter.Response.FreightConsult>(result);
+                            var json = apiResult.Content.ReadAsStringAsync().Result;
+                            return JsonConvert.DeserializeObject<Models.Parameter.Response.FreightConsult>(json);
                         default:
-                            return null;
+                            throw new Exception("Erro ao consultar CPF: " + apiResult.Content.ReadAsStringAsync().Result);
                     }
+
                 }
             }
             catch (Exception wex)
             {
+                result = wex.Message;
                 return null;
             }
         }
 
-        public static async Task<Models.Parameter.Response.CreditConsult> BuscarFinanceiro(string cpf)
+        public static Models.Parameter.Response.CreditConsult BuscarFinanceiro(string cpf, ref string result)
         {
-            var url = _baseUrl + "/credit/consult";
+            var url = _baseUrl + "/credit/consult?";
+            url += $"cpf={cpf}&";
 
             var usuario = Util.UsuarioUtil.GetUsuarioLogado();
 
-            var credit = new Models.Parameter.Request.CreditConsult()
-            {
-                Cpf = cpf
-            };
-
-            var json = JsonConvert.SerializeObject(credit);
-
             try
             {
-                using (var api = new HttpClient { BaseAddress = new Uri(url) })
+                using (var api = new HttpClient())
                 {
-                    api.DefaultRequestHeaders.Add("Authorization", usuario.authenticationKey);
-                    var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+                    api.DefaultRequestHeaders.TryAddWithoutValidation("Authorization", usuario.authenticationKey);
+                    api.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/json");
 
-                    var apiResult = api.PostAsync(api.BaseAddress, httpContent).Result;
+                    var apiResult = api.GetAsync(url).Result;
 
                     switch (apiResult.StatusCode)
                     {
                         case HttpStatusCode.OK:
-                            var result = apiResult.Content.ReadAsStringAsync().Result;
-                            return JsonConvert.DeserializeObject<Models.Parameter.Response.CreditConsult>(result);
+                            var json = apiResult.Content.ReadAsStringAsync().Result;
+                            return JsonConvert.DeserializeObject<Models.Parameter.Response.CreditConsult>(json);
                         default:
-                            return null;
+                            throw new Exception("Erro ao consultar CPF: " + apiResult.Content.ReadAsStringAsync().Result);
                     }
+
                 }
             }
             catch (Exception wex)
             {
+                result = wex.Message;
                 return null;
             }
         }

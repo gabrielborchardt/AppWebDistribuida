@@ -3,18 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Mobile.View.Frete" Title="Frete">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="Start" HorizontalOptions="CenterAndExpand">
-            <Entry Placeholder="CEP Origem" Text="{Binding CepOrigem}"/>
-            <Entry Placeholder="CEP Destino" Text="{Binding CepDestino}"/>
 
-            <Label Text="Peso da Embalagem"/>
-            <Entry Text="{Binding Peso}"/>
+        <StackLayout VerticalOptions="Start" HorizontalOptions="FillAndExpand">
+            <Entry Placeholder="Digite o CEP" Keyboard="Numeric" Text="{Binding Cep} "/>
 
-            <Label Text="Tamanho da Embalagem"/>
-            <Entry Text="{Binding Tamanho}"/>
-            
+            <Label Text="Peso da Embalagem (Kg)"/>
+            <Entry Text="{Binding Peso}" Keyboard="Numeric"/>
+
+            <Label Text="Tamanho da Embalagem (cm)"/>
+            <Entry Text="{Binding Tamanho}" Keyboard="Numeric"/>
+
             <Button Text="Calcular Frete" Command="{Binding CalcularCommand}"/>
             <Label Text="{Binding Resultado}"/>
         </StackLayout>
+
     </ContentPage.Content>
 </ContentPage>

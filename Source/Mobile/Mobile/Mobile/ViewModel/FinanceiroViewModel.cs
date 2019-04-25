@@ -42,28 +42,32 @@ namespace Mobile.ViewModel
 
                 validacao = Helpers.CpfHelper.IsValid(_Cpf);
                 if (validacao != "OK")
-                    _Resultado = validacao;
+                {
+                    Resultado = validacao;
+                    return;
+                }
 
-                var financeiro = Servico.ConsultaApi.BuscarFinanceiro(_Cpf).Result;
+                var result = string.Empty;
+                var financeiro = Servico.ConsultaApi.BuscarFinanceiro(_Cpf, ref result);
 
                 if (financeiro == null)
                 {
-                    _Resultado = "Não foi possivel verificar a situação financeira.";
+                    Resultado = result;
                 }
                 else
                 {
                     if (financeiro.PossuiDividasEmpresa)
-                        _Resultado = "Possui Dívidas na Empresa";
+                        Resultado = "Possui Dívidas na Empresa";
                     else if (financeiro.PossuiDividasSerasa)
-                        _Resultado = "Possui Dívidas no Serasa";
+                        Resultado = "Possui Dívidas no Serasa";
                     else
-                        _Resultado = string.Format("Valor Liberado: R${0}", financeiro.ValorDisponivel);
+                        Resultado = string.Format("Crédito Liberado: R${0}", financeiro.ValorDisponivel.ToString("N2"));
                 }
 
             }
             catch (Exception ex)
             {
-                _Resultado = "Ocorreu um erro: " + ex.Message;
+                Resultado = "Ocorreu um erro: " + ex.Message;
             }
         }
     }

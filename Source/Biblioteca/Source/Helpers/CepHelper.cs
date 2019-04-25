@@ -4,6 +4,11 @@
     {
         public static string IsValid(string cep)
         {
+            if(cep == null)
+            {
+                return "Informe o CEP.";
+            }
+
             if (cep.Length != 8)
             {
                 return "CEP Inválido! O CEP deve conter 8 caracteres.";
