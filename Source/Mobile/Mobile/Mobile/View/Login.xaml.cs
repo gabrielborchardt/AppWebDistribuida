@@ -16,7 +16,7 @@ namespace Mobile.View
 		{
 			InitializeComponent();
 
-            BindingContext = new ViewModel.LoginViewModel();
+            BindingContext = new ViewModel.LoginViewModel(Navigation);
 		}
 	}
 }

@@ -2,49 +2,18 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Net;
-using System.Net.NetworkInformation;
 using System;
 using Mobile.Model;
-using System.Text;
-using System.Collections.Generic;
 
 namespace Mobile.Servico
 {
     public class ConsultaApi
     {
-        private static readonly string _baseUrl = "http://192.168.100.86/Aps/Api";
-
-        public static bool PingHost(string nameOrAddress)
-        {
-            bool pingable = false;
-            Ping pinger = null;
-
-            try
-            {
-                pinger = new Ping();
-                PingReply reply = pinger.Send(nameOrAddress);
-                pingable = reply.Status == IPStatus.Success;
-            }
-            catch (PingException)
-            {
-                // Discard PingExceptions and return false;
-            }
-            finally
-            {
-                if (pinger != null)
-                {
-                    pinger.Dispose();
-                }
-            }
-
-            return pingable;
-        }
+        //private static readonly string _baseUrl = "http://192.168.100.86/Aps/Api";
+        private static readonly string _baseUrl = Util.ConfiguracaoUtil.GetIpConexao();
 
         public async static Task<Mensagem> Login(Usuario usuario)
         {
-
-            PingHost("192.168.100.86");
-
             var url = _baseUrl + "/authentication";
 
             var loginBase64 = Helpers.Base64Helper.Base64Encode(usuario.email + ":" + usuario.senha);

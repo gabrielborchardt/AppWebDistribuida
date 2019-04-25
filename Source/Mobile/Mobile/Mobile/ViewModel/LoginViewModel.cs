@@ -45,6 +45,9 @@ namespace Mobile.ViewModel
         }
 
         public Command EntrarCommand { get; set; }
+        public Command ConfiguracaoCommand { get; set; }
+
+        public INavigation Navigation { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(string PropertyName)
@@ -53,9 +56,19 @@ namespace Mobile.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
         }
 
-        public LoginViewModel()
+        public LoginViewModel(INavigation navigation)
         {
             EntrarCommand = new Command(EntrarAction);
+
+            ConfiguracaoCommand = new Command(ConfiguracaoAction);
+
+            Navigation = navigation;
+        }
+
+        private async void ConfiguracaoAction()
+        {
+            await Navigation.PushModalAsync(new View.Configuracao());
+
         }
 
         private async void EntrarAction()

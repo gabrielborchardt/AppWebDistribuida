@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mobile.View.Configuracao"
+             Title="Configuração">
+    
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Start" HorizontalOptions="FillAndExpand">
+            <Entry Text="{Binding Ip} "/>
+            <Button Text="Testar Conexão" Command="{Binding TestarCommand}"/>
+
+            <Entry Text="{Binding Url} "/>
+            <Button Text="Salvar Url" Command="{Binding SalvarCommand}"/>
+            
+            <Label Text="{Binding Resultado}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
